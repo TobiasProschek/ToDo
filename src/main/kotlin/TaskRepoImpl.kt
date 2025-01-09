@@ -13,17 +13,18 @@ class TaskRepoImpl : TaskRepo {
         map[nextID] = newTask
         nextID++
         log.info {"New task created, ID = ${newTask.id}"}
-        TODO("Return the created task")
+        return newTask
     }
 
     override fun delete(task: Int): Boolean {
         if (map.containsKey(task)) {
             map.remove(task)
             log.info { "Removed task with id $task" }
+            return true
         } else {
             log.info { "Task with ID $task not found" }
+            return false
         }
-        TODO("Return the right boolean value")
     }
 
     override fun findById(taskId: Int): Task? {
@@ -32,13 +33,13 @@ class TaskRepoImpl : TaskRepo {
         } else {
             log.info { "Task with ID $taskId not found" }
         }
-        TODO("Return the created task")
+        return map[taskId]
     }
 
     override fun findByPriority(priority: String): List<Task> {
         log.debug { "Searching for tasks with priority $priority..." }
 
-        val filteredMap = map.filter { it.value.priorityString == priority }.keys
+        map.filter { it.value.priorityString == priority }.keys
         TODO("Return list of matching tasks")
     }
 
