@@ -72,8 +72,9 @@ fun main() {
                     print("Nache Welcher 'Priority' möchten sie suchen: ")
                     val readPriority = readln().toInt()
                     if (readPriority <= 3) {
-                        val prioString = Priority.fromCode(readPriority.toInt())
-                        taskRepo.findByPriority(prioString)
+                        TODO("Fix following code")
+//                        val prioString = Priority.fromCode(readPriority.toInt())
+//                        taskRepo.findByPriority(prioString)
                     } else {
                         println("Error")
                     }
