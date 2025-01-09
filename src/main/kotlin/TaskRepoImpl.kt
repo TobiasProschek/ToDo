@@ -1,9 +1,9 @@
-import io.github.oshai.kotlinlogging.KotlinLogging
+import mu.KotlinLogging
 import kotlin.Int
 
 class TaskRepoImpl : TaskRepo {
 
-    private val log = KotlinLogging.logger { }
+    private val log = KotlinLogging.logger {  }
 
     private val map: MutableMap<Int, Task> = mutableMapOf()
     private var nextID = 1
