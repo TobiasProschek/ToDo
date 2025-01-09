@@ -5,8 +5,9 @@ class TaskRepoImplTest {
     @Test
     fun `repoImpl add Test`(){
         val taskRepoImpl: TaskRepoImpl = TaskRepoImpl()
-        taskRepoImpl.add("Test","Test",3,2)
+        taskRepoImpl.add("Test","Test","3","2")
         taskRepoImpl.findById(1)
-        assertTrue(taskRepoImpl.findById(1))
+        TODO("Fix test")
+        //assertTrue(taskRepoImpl.findById(1))
     }
 }

@@ -1,10 +1,12 @@
+// TODO: Change class to use the priority enum instead of a string
+// TODO: Change class to use the status enum instead of a string
 data class Task(
+    val id: Int,
     val title: String,
     val shortText: String,
     val priorityString: String,
     val statusString: String
 )
-
 
 enum class Priority(val code: Int) {
     HIGH(1),

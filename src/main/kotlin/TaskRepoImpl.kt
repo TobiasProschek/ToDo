@@ -1,50 +1,51 @@
+import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlin.Int
 
 class TaskRepoImpl : TaskRepo {
 
+    private val log = KotlinLogging.logger { }
+
     private val map: MutableMap<Int, Task> = mutableMapOf()
     private var nextID = 1
 
-    override fun add(title: String, text: String, priority: String, status: String) {
-        map[nextID] = Task(title, text, priority, status)
-//        println("Task wurde erfolgreich erstellt, ID = $nextID")
-//        println(map)
+    override fun add(title: String, text: String, priority: String, status: String): Task {
+        map[nextID] = Task(nextID, title, text, priority, status)
+        log.info {"Task wurde erfolgreich erstellt, ID = $nextID"}
         nextID++
+        TODO("Return the created task")
     }
 
-    override fun delete(taskID: Int): Boolean {
-        if (map.containsKey(taskID)) {
-            map.remove(taskID)
-//            println("Task mit der ID: $taskID wurde gelöscht")
+    override fun delete(task: Int): Boolean {
+        if (map.containsKey(task)) {
+            map.remove(task)
+            log.info { "Task mit der ID: $task wurde gelöscht" }
         } else {
-//            println("Task mit der ID: $taskID wurde nicht gefunden!")
-//            println(map.containsKey(taskID))
+            log.info { "Task mit der ID: $task wurde nicht gefunden!" }
         }
-        return true
+        TODO("Return the right boolean value")
     }
 
-    override fun findById(taskId: Int): Boolean {
+    override fun findById(taskId: Int): Task? {
         if (map.containsKey(taskId)) {
-//            println("Die Task mit der ID: $taskId ist: ")
-//            println("Title: ${map[taskId]?.title}")
-//            println("Short_Text: ${map[taskId]?.shortText}")
-//            println("Status: ${map[taskId]?.statusString}")
-//            println("Priority: ${map[taskId]?.priorityString}")
+            log.info { "Die Task mit der ID: $taskId ist: " }
+            log.info { "Title: ${map[taskId]?.title}" }
+            log.info { "Short_Text: ${map[taskId]?.shortText}" }
+            log.info { "Status: ${map[taskId]?.statusString}" }
+            log.info { "Priority: ${map[taskId]?.priorityString}" }
         } else {
-//            println("Task mit der ID: $taskId konnte nicht gefunden werden!")
+            log.info { "Task mit der ID: $taskId konnte nicht gefunden werden!" }
         }
-        return true
+        TODO("Return the created task")
     }
 
-    override fun findByPriority(priority: String?): Boolean {
-//        println("Task mit der Priorität $priority werden gesucht.")
+    override fun findByPriority(priority: String): List<Task> {
+        log.info { "Task mit der Priorität $priority werden gesucht." }
 
         val filteredMap = map.filter { it.value.priorityString == priority }.keys
-//        println(filteredMap)
-        return true
+        TODO("Return list of matching tasks")
     }
 
-    override fun update(task: Int) {
-//        map[task] =
+    override fun update(task: Task) {
+        TODO("Implement")
     }
 }
