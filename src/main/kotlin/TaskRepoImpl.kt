@@ -39,8 +39,8 @@ class TaskRepoImpl : TaskRepo {
     override fun findByPriority(priority: String): List<Task> {
         log.debug { "Searching for tasks with priority $priority..." }
 
-        map.filter { it.value.priorityString == priority }.keys
-        TODO("Return list of matching tasks")
+        val filteredList = map.filter { it.value.priorityString == priority }.values.toList()
+        return filteredList
     }
 
     override fun update(task: Task) {
