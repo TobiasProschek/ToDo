@@ -12,10 +12,10 @@ repositories {
 }
 
 dependencies {
+    runtimeOnly("ch.qos.logback:logback-classic:1.5.16")
     testImplementation(kotlin("test"))
-    implementation("io.github.oshai:kotlin-logging-jvm:7.0.3")
     implementation("com.google.code.gson:gson:2.10.1")
-}
+    implementation("io.github.microutils:kotlin-logging:3.0.5") }
 
 tasks.test {
     useJUnitPlatform()
