@@ -1,7 +1,7 @@
 //data class FirstTask(val Title: String, val Short_Text: String, val Priority: String, val Status: String)
 
 fun main(){
-    val taskRepo: TaskRepo = TaskRepoImpl()
+    TaskRepoImpl()
 //    val gson = Gson()
 //    val file = File("C:\\Users\\proschek\\IdeaProjects\\Learning\\ToDo\\src\\main\\kotlin\\ToDo.json")
 //    val tasks: MutableList<FirstTask> = if (file.exists()) {
@@ -37,12 +37,12 @@ fun main(){
 
         if (edit == true) {
             print("welche Task möchten sie Editieren: ")
-            val firstedit = readln()
+            readln()
 //            taskRepo.findById(firstedit)
 
         } else if (delete == true) {
             print("Welche Task möchten sie löschen: ")
-            val firstDel = readln()
+            readln()
             //taskRepo.delete(firstDel)
 
 //            if (firstDel in tasks.indices) {
@@ -75,7 +75,7 @@ fun main(){
 
         } else if (read == true) {
             print("Nach welcher Task suchst du?: ")
-            val readFirst = readln().toIntOrNull()
+            readln().toIntOrNull()
             //taskRepo.findById(readFirst)
 //            val index: Int? = eva
 //

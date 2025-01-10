@@ -3,7 +3,7 @@ import kotlin.Int
 
 class TaskRepoImpl : TaskRepo {
 
-    private val log = KotlinLogging.logger {  }
+    private val log = KotlinLogging.logger { }
 
     private val map: MutableMap<Int, Task> = mutableMapOf()
     private var nextID = 1
@@ -40,10 +40,16 @@ class TaskRepoImpl : TaskRepo {
         log.debug { "Searching for tasks with priority $priority..." }
 
         val filteredList = map.filter { it.value.priorityString == priority }.values.toList()
+        log.info { filteredList }
         return filteredList
     }
 
     override fun update(task: Task) {
-        TODO("Implement")
+        if (map.containsKey(task.id)) {
+            map[task.id] = task
+            log.info { "Task updated successfully." }
+        } else {
+            log.info { "Task not found" }
+        }
     }
 }
