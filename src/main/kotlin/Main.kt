@@ -29,7 +29,7 @@ fun main() {
             if (existingTask != null) {
                 println("Was möchten sie in der Task Updaten: ")
                 val field = readln()
-                println("Geben sie das:")
+                println("Geben sie den neuen Inhalt an: ")
                 val newValue = readln().toLowerCase()
 
                 val updatedTask = when (field) {
