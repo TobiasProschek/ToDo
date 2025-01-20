@@ -1,5 +1,6 @@
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -13,10 +14,13 @@ class TaskRepoTest {
     @Test
     fun `Test basic operations of TaskRepo interface`() {
         val task = subjectUnderTest.add("Test", "Test", "3", "2")
+        val task2 = subjectUnderTest.add("Test", "Test", "2", "2")
 
         val storedTask = subjectUnderTest.findById(task.id)
         assertNotNull(storedTask)
         assertEquals(task.id, storedTask.id)
+
+        assertNotEquals(task.id, task2.id)
 
         val updatedTask = task.copy(title = "New Title")
         subjectUnderTest.update(updatedTask)

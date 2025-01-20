@@ -5,7 +5,7 @@ data class Task(
     var title: String,
     var shortText: String,
     var priorityString: String,
-    var statusString: String
+    var statusString: String,
 )
 
 enum class Priority(val code: Int) {
@@ -27,7 +27,7 @@ enum class TaskStatus(val code: Int) {
     CLOSED(4);
 
     companion object {
-        fun fromCode(code: Int): String? {
+        fun fromCode(code: Any): String? {
             return TaskStatus.entries.find { it.code == code }?.name
         }
     }

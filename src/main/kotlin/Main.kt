@@ -22,21 +22,27 @@ fun main() {
         }
 
         if (edit == true) {
-            println("Welche Task möchte sie Updaten: ")
+            print("Welche Task möchte sie Updaten: ")
             val taskId = readln().toInt()
             val existingTask = taskRepo.findById(taskId)
 
             if (existingTask != null) {
-                println("Was möchten sie in der Task Updaten: ")
-                val field = readln()
-                println("Geben sie den neuen Inhalt an: ")
-                val newValue = readln().toLowerCase()
+                print("Was möchten sie in der Task Updaten: ")
+                val field = readln().toLowerCase()
+                print("Geben sie den neuen Inhalt an: ")
+                val newValue = readln()
+
+                val input = if (newValue.toIntOrNull() in 0..4) {
+                    newValue.toInt()
+                } else {
+                    newValue
+                }
 
                 val updatedTask = when (field) {
-                    "title" -> existingTask.copy(title = newValue)
-                    "beschreibung" -> existingTask.copy(shortText = newValue)
-                    "status" -> existingTask.copy(statusString = newValue)
-                    "priority" -> existingTask.copy(priorityString = newValue)
+                    "title" -> existingTask.copy(title = input.toString())
+                    "beschreibung" -> existingTask.copy(shortText = input.toString())
+                    "status" -> existingTask.copy(statusString = TaskStatus.fromCode(input).toString())
+                    "priority" -> existingTask.copy(priorityString = TaskStatus.fromCode(input).toString())
                     else -> {
                         println("Error")
                         return
