@@ -22,12 +22,35 @@ fun main() {
         }
 
         if (edit == true) {
-            print("welche Task möchten sie Editieren: ")
-            val editTask = readln().toInt()
-            if (editTask == null) {
-                println("Invalid task ID")
-                return
-                taskRepo.update(editTask)
+            print("Welche Task möchte sie Updaten: ")
+            val taskId = readln().toInt()
+            val existingTask = taskRepo.findById(taskId)
+
+            if (existingTask != null) {
+                print("Was möchten sie in der Task Updaten: ")
+                val field = readln().toLowerCase()
+                print("Geben sie den neuen Inhalt an: ")
+                val newValue = readln()
+
+                val input = if (newValue.toIntOrNull() in 0..4) {
+                    newValue.toInt()
+                } else {
+                    newValue
+                }
+
+                val updatedTask = when (field) {
+                    "title" -> existingTask.copy(title = input.toString())
+                    "beschreibung" -> existingTask.copy(shortText = input.toString())
+                    "status" -> existingTask.copy(statusString = TaskStatus.fromCode(input).toString())
+                    "priority" -> existingTask.copy(priorityString = TaskStatus.fromCode(input).toString())
+                    else -> {
+                        println("Error")
+                        return
+                    }
+                }
+                taskRepo.update(updatedTask)
+            } else {
+                println("Task not found")
             }
             } else if (delete == true) {
                 print("Welche Task möchten sie löschen: ")
@@ -43,13 +66,12 @@ fun main() {
                 val title = readln()
                 print("Welche Beschreibung soll die Task haben: ")
                 val shortText = readln()
-                print("Welche Priority hat diese Task: ")
-                val priority = readln().toInt()
-                val priorityString = Priority.fromCode(priority)
                 print("Welchen Status hat diese Task: ")
                 val status = readln().toInt()
                 val statusString = TaskStatus.fromCode(status)
-
+            print("Welche Priority hat diese Task: ")
+            val priority = readln().toInt()
+            val priorityString = Priority.fromCode(priority)
                 taskRepo.add(title, shortText, priorityString.toString(), statusString.toString())
 
             } else if (read == true) {
@@ -72,9 +94,8 @@ fun main() {
                     print("Nache Welcher 'Priority' möchten sie suchen: ")
                     val readPriority = readln().toInt()
                     if (readPriority <= 3) {
-                        TODO("Fix following code")
-//                        val prioString = Priority.fromCode(readPriority.toInt())
-//                        taskRepo.findByPriority(prioString)
+                        val prioString = Priority.fromCode(readPriority)
+                        taskRepo.findByPriority(prioString.toString())
                     } else {
                         println("Error")
                     }

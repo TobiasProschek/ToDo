@@ -2,10 +2,10 @@
 // TODO: Change class to use the status enum instead of a string
 data class Task(
     val id: Int,
-    val title: String,
-    val shortText: String,
-    val priorityString: String,
-    val statusString: String
+    var title: String,
+    var shortText: String,
+    var priorityString: String,
+    var statusString: String,
 )
 
 enum class Priority(val code: Int) {
@@ -27,7 +27,7 @@ enum class TaskStatus(val code: Int) {
     CLOSED(4);
 
     companion object {
-        fun fromCode(code: Int): String? {
+        fun fromCode(code: Any): String? {
             return TaskStatus.entries.find { it.code == code }?.name
         }
     }
